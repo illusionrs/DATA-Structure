@@ -1,0 +1,90 @@
+import java.util.*;
+
+public class TwoStack {
+	int[] data;
+	int top1;
+	int size1;
+	int size;
+	int top2;
+	
+	TwoStack(int cap)
+	{
+		this.data=new int[cap];
+		 this.top1=-1;
+		this.size1=0;
+		this.top2=this.size1;
+		this.size=0;
+		
+	}
+	public void Push1(int val)
+	{
+		top1++;
+		this.data[top1]=val;
+		this.size1++;
+		this.top2=this.size1-1;
+		this.size++;
+	}
+	public void Push2(int val)
+	{
+		this.top2++;
+		this.data[top2]=val;
+		this.size++;
+	}
+	public int Pop1()
+	{
+		int t=this.data[this.top1];
+		this.data[this.top1]=0;
+		this.top1--;
+		//this.size1--;
+		return t;
+		
+	}
+	public int Pop2()
+	{
+		int t=this.data[this.top2];
+		this.data[this.top2]=0;
+		this.top2--;
+		//this.size1--;
+		return t;
+		
+	}
+	public void Display1()
+	{
+		System.out.println("Elements in stack1 are");
+		for(int i=this.top1;i>=0;i--)
+			
+			System.out.print(this.data[i]+ " ");
+	}
+	public void Display2()
+	{
+		System.out.println("Elements in stack2 are");
+		for(int i=this.top2;i>=this.size1;i--)
+			System.out.print(this.data[i]+" ");
+	}
+	
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		Scanner sc=new Scanner(System.in);
+		int n=sc.nextInt();
+		TwoStack ob=new TwoStack(n);
+		int s1=sc.nextInt();
+		int s2=sc.nextInt();
+		for(int i=0;i<s1;i++) {
+			int d=sc.nextInt();
+			ob.Push1(d);
+		}
+		for(int i=0;i<s2;i++) {
+			int d=sc.nextInt();
+			ob.Push2(d);
+		}
+		System.out.println(ob.Pop1());
+		System.out.println(ob.Pop2());
+		ob.Display1();
+		System.out.println();
+		ob.Display2();
+		
+
+	}
+
+}
